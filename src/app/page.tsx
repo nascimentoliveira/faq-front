@@ -1,94 +1,47 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import { useState } from 'react';
+import { Typography } from '@mui/material';
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
+import '@fontsource/roboto/700.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/300.css';
+import styles from './page.module.css';
+
+import FAQ from './components/FAQ';
+import FAQdata from './utils/faqData';
 
 export default function Home() {
+  const [editMode, setEditeMode] = useState(false);
+  const [data, setdata] = useState(FAQdata);
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className={styles.banner}>
+        <div className={styles.header}>
+          <Typography
+            variant="h3"
+            sx={{ fontWeight: 'light' }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            FAQ
+          </Typography>
+          <Typography
+            variant="h1"
+            sx={{ fontWeight: 'bold' }}
+          >
+            perguntas frequentes
+          </Typography>
+        </div>
+        <div className={styles.edit}>
+          <Fab color={editMode ? 'secondary' : 'default'} aria-label="edit">
+            <EditIcon onClick={() => setEditeMode(!editMode)} />
+          </Fab>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={styles.body}>
+        <Typography variant="h4">
+          Como podemos te ajudar?
+        </Typography>
+        <FAQ questions={data} editMode={editMode} />
       </div>
     </main>
   )
