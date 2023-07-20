@@ -54,7 +54,7 @@
   padding: 15px;
 }
 
-.FaqContainer button{
+.FaqContainer button {
   margin: 0;
   padding-top: 0;
   padding-bottom: 0;
@@ -66,6 +66,10 @@
   display: flex;
   justify-content: center;
   margin: 10px 0;
+}
+
+.whiteTextField {
+  color: white;
 }
 
 @keyframes bannerAnim {
