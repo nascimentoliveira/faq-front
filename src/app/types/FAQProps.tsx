@@ -1,7 +1,7 @@
-import { Question } from "./QuestionType";
+import { QuestionType } from './QuestionType';
 
 export type FAQProps = {
-  questions: Question[];
+  questions: QuestionType[];
   editMode: boolean;
-  ordination?: string;
+  ordination?: string | null;
 };
