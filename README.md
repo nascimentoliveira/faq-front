@@ -15,7 +15,7 @@ A aplicação consiste em uma página web responsiva, onde os usuários podem ac
 
 A principal funcionalidade da aplicação é a possibilidade de administradores gerenciarem o conteúdo da FAQ de forma dinâmica e intuitiva. Ao habilitar o modo de administração, é possível editar e excluir o conteúdo de qualquer seção ou subseção. Além disso, é possível adicionar novas seções e subseções diretamente na página.
 
-> O código-fonte do back-end da aplicação está hospedado no GitHub em: [FAQ Back-end](https://github.com/nascimentoliveira/faq-baxk)
+> O código-fonte do back-end da aplicação está hospedado no GitHub em: [FAQ Back-end](https://github.com/nascimentoliveira/faq-back)
 
 > FAQ atualmente pode ser experimentado em: [FAQ Live Demo](https://faq-front-nascimentoliveira.vercel.app/)
 >
