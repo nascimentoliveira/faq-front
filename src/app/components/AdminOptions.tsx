@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Box, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -6,10 +7,15 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { AdminOptionsProps } from '../types/AdminOptionsProps';
+import api from '../utils/api';
 
 const AdminOptions = (
   {
+    sequence,
     question,
+    ordination,
+    faqStates,
+    setFaqStates,
     questionStates,
     setQuestionStates,
   }: AdminOptionsProps) => {
@@ -20,14 +26,44 @@ const AdminOptions = (
       ...questionStates,
       isExpanded: true,
       editing: true,
-      editedQuery: question.question,
+      editedQuestion: question.question,
       editedAnswer: question.answer || '',
     });
   };
 
-  const handleConfirmClick = (event: React.MouseEvent) => {
+  const handleConfirmClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
-    // TODO: Send editedQuery and editedAnswer
+    try {
+      setFaqStates({
+        ...faqStates,
+        loading: true,
+      });
+      const body = {
+        question: questionStates.editedQuestion,
+        answer: questionStates.editedAnswer,
+      }
+      await api.put(`/faq/${question.id}`, body);
+      setFaqStates({
+        ...faqStates,
+        refresh: !faqStates.refresh,
+      });
+      setQuestionStates({
+        ...questionStates,
+        isExpanded: true,
+        editing: false,
+      });
+    } catch (error) {
+      setFaqStates({
+        ...faqStates,
+        loading: false,
+      });
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Erro ao atualizar pergunta!',
+      });
+      console.error('Erro ao atualizar pergunta:', error);
+    }
   };
 
   const handleCancelClick = (event: React.MouseEvent) => {
@@ -38,10 +74,46 @@ const AdminOptions = (
     });
   };
 
-  const handleDeleteClick = (event: React.MouseEvent) => {
+  const handleDeleteClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
-    // TODO: Alert
-    // TODO: Send id 
+    Swal.fire({
+      icon: 'warning',
+      title: 'Está certo disso?',
+      text: `Você tem certeza de que deseja remover a 
+      ${ordination ? ' subseção ' : ' seção '}
+      ${ordination ? ` ${ordination}.${sequence}` : ` ${sequence}`}? 
+      Caso haja subseções, elas também serão removidas de forma permanente!`,
+      confirmButtonText: 'APAGAR',
+      showCancelButton: true,
+      cancelButtonText: 'VOLTAR',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          setFaqStates({
+            ...faqStates,
+            loading: true,
+          });
+          await api.delete(`/faq/${question.id}`);
+          setFaqStates({
+            ...faqStates,
+            refresh: !faqStates.refresh,
+          });
+        } catch (error) {
+          setFaqStates({
+            ...faqStates,
+            loading: false,
+          });
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `Erro ao remover a ${ordination ? ' subseção ' : ' seção '}
+            ${ordination ? ` ${ordination}.${sequence}` : ` ${sequence}`}!`,
+          });
+          console.error(`Erro ao remover a ${ordination ? ' subseção ' : ' seção '}
+            ${ordination ? ` ${ordination}.${sequence}` : ` ${sequence}`}:`, error);
+        }
+      }
+    });
   };
 
   const handleAddClick = (event: React.MouseEvent) => {

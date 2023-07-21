@@ -2,10 +2,13 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { QuestionType } from './QuestionType';
 import { QuestionStatesType } from './QuestionStatesType';
+import { FaqStatesType } from './FAQProps';
 
 export type AnswerProps = {
+  sequence: number;
   question: QuestionType;
-  editMode: boolean;
+  faqStates: FaqStatesType;
+  setFaqStates: Dispatch<SetStateAction<FaqStatesType>>;
   questionStates: QuestionStatesType;
   setQuestionStates: Dispatch<SetStateAction<QuestionStatesType>>;
   ordination?: string;

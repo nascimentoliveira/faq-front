@@ -5,20 +5,35 @@ import { FAQProps } from '../types/FAQProps';
 import styles from '../page.module.css';
 import Question from './Question';
 
-const FAQ = ({ questions, editMode, ordination }: FAQProps) => {
+const FAQ = ({ questions, faqStates, setFaqStates, ordination }: FAQProps) => {
+
+  const handleAddClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setFaqStates({
+      ...faqStates,
+      parentFlag: true,
+      openAddQuestionForm: true,
+    });
+  };
+
   return (
     <div className={styles.faqContainer}>
-      {questions.map((question) => (
+      {questions.map((question, index) => (
         <Question
           key={question.id}
+          sequence={index+1}
           question={question}
-          editMode={editMode}
+          faqStates={faqStates}
+          setFaqStates={setFaqStates}
           ordination={ordination ? `${ordination}` : ''}
         />
       ))}
       <div className={styles.addButton}>
-        {!ordination && editMode &&
-          <Fab aria-label='edit'>
+        {!ordination && faqStates.editMode &&
+          <Fab 
+            aria-label='edit'
+            onClick={(event) => handleAddClick(event)}
+          >
             <AddIcon />
           </Fab>
         }

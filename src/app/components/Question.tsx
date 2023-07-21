@@ -7,13 +7,20 @@ import Answer from './Answer';
 import AskingBar from './AskingBar';
 import AddQuestionForm from './AddQuestionForm';
 
-const Question = ({ question, editMode, ordination }: QuestionProps) => {
+const Question = (
+  {
+    sequence,
+    question,
+    faqStates,
+    setFaqStates,
+    ordination
+  }: QuestionProps) => {
 
   const [questionStates, setQuestionStates] = useState({
     openAddQuestionForm: false,
     isExpanded: false,
     editing: false,
-    editedQuery: '',
+    editedQuestion: '',
     editedAnswer: '',
   });
 
@@ -32,23 +39,30 @@ const Question = ({ question, editMode, ordination }: QuestionProps) => {
         onChange={handleAccordionChange}
       >
         <AskingBar
+          sequence={sequence}
           question={question}
           ordination={ordination ? `${ordination}` : ''}
-          editMode={editMode}
+          faqStates={faqStates}
+          setFaqStates={setFaqStates}
           questionStates={questionStates}
           setQuestionStates={setQuestionStates}
         />
         <Answer
+          sequence={sequence}
           question={question}
           ordination={ordination ? `${ordination}` : ''}
-          editMode={editMode}
+          faqStates={faqStates}
+          setFaqStates={setFaqStates}
           questionStates={questionStates}
           setQuestionStates={setQuestionStates}
         />
       </Accordion>
       <AddQuestionForm
+        sequence={sequence}
         question={question}
         ordination={ordination ? `${ordination}` : ''}
+        faqStates={faqStates}
+        setFaqStates={setFaqStates}
         questionStates={questionStates}
         setQuestionStates={setQuestionStates}
       />

@@ -12,9 +12,11 @@ import { AskingBarProps } from '../types/AskingBarProps';
 
 const AskingBar = (
   {
+    sequence,
     question,
     ordination,
-    editMode,
+    faqStates,
+    setFaqStates,
     questionStates,
     setQuestionStates,
   }: AskingBarProps) => {
@@ -39,11 +41,11 @@ const AskingBar = (
             <div style={{ display: 'flex' }}>
               <Typography variant='h6'>
                 {ordination && `${ordination}.`}
-                {question.order}.
+                {sequence}.
               </Typography>
               <TextField
                 id='standard-helperText'
-                defaultValue={questionStates.editedQuery}
+                defaultValue={questionStates.editedQuestion}
                 helperText='Pergunta'
                 variant='standard'
                 multiline
@@ -52,7 +54,7 @@ const AskingBar = (
                 InputProps={{ style: { color: 'white', fontSize: '20px' } }}
                 FormHelperTextProps={{ style: { color: 'white' } }}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setQuestionStates({ ...questionStates, editedQuery: e.target.value });
+                  setQuestionStates({ ...questionStates, editedQuestion: e.target.value });
                   e.preventDefault();
                 }}
               />
@@ -60,13 +62,17 @@ const AskingBar = (
           ) : (
             <Typography variant='h6'>
               {ordination && `${ordination}.`}
-              {question.order}. {question.question}
+              {sequence}. {question.question}
             </Typography>
           )}
         </Box>
-        {editMode &&
+        {faqStates.editMode &&
           <AdminOptions
+            sequence={sequence}
             question={question}
+            ordination={ordination}
+            faqStates={faqStates}
+            setFaqStates={setFaqStates}
             questionStates={questionStates}
             setQuestionStates={setQuestionStates}
           />

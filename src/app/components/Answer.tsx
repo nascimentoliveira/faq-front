@@ -6,9 +6,11 @@ import FAQ from './FAQ';
 
 const Answer = (
   {
+    sequence,
     question,
     ordination,
-    editMode,
+    faqStates,
+    setFaqStates,
     questionStates,
     setQuestionStates,
   }: AnswerProps) => {
@@ -42,8 +44,9 @@ const Answer = (
         <div style={{ marginLeft: '15px', width: '100%' }}>
           <FAQ
             questions={question.subquestions}
-            editMode={editMode}
-            ordination={ordination ? `${ordination}.${question.order}` : `${question.order}`}
+            faqStates={faqStates}
+            setFaqStates={setFaqStates}
+            ordination={ordination ? `${ordination}.${sequence}` : `${sequence}`}
           />
         </div>
       )}
