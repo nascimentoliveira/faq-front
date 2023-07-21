@@ -9,7 +9,7 @@
 
 # FAQ
 
-Este é o README da aplicação de Página de FAQ com Modo de Administração. Essa aplicação permite a criação e gerenciamento de uma página de perguntas frequentes (FAQ) com diversas seções e subseções, onde os usuários podem clicar nas seções e navegar entre as suas subseções. Além disso, um modo de administração permite que os administradores insirem, editem e excluam o conteúdo das seções e subseções.
+Este é o README da aplicação de Página de FAQ com Modo de Administração. Essa aplicação permite a criação e gerenciamento de uma página de perguntas frequentes (FAQ) com diversas seções e subseções, onde os usuários podem clicar nas seções e navegar entre as suas subseções. Além disso, um modo de administração permite que os administradores insiram, editem e excluam o conteúdo das seções e subseções.
 
 A aplicação consiste em uma página web responsiva, onde os usuários podem acessar uma lista de seções de perguntas frequentes. Ao clicar em uma seção, o conteúdo correspondente é expandido, revelando as respostas e, se houver, suas subseções com mais perguntas e respostas.
 
