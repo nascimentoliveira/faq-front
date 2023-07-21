@@ -17,7 +17,7 @@ A principal funcionalidade da aplicação é a possibilidade de administradores 
 
 > O código-fonte do back-end da aplicação está hospedado no GitHub em: [FAQ Back-end](https://github.com/nascimentoliveira/faq-baxk)
 
-> Linkr atualmente pode ser experimentado em: [FAQ Live Demo](https://faq-front-nascimentoliveira.vercel.app/)
+> FAQ atualmente pode ser experimentado em: [FAQ Live Demo](https://faq-front-nascimentoliveira.vercel.app/)
 >
 >> *A primeira requisição ao Live Demo pode levar um pouco mais de tempo para carregar. Isso ocorre porque os servidores são ativados conforme necessário e podem levar alguns instantes para iniciar!*
 >>
@@ -33,12 +33,13 @@ A principal funcionalidade da aplicação é a possibilidade de administradores 
 Para utilizar a aplicação de Página de FAQ com Modo de Administração, siga os passos abaixo:
 
 1. Navegação na Página de FAQ
-    - Acesse a página da FAQ através do navegador da web.
-    - Você verá uma lista de seções de perguntas frequentes.
-    - Clique em uma seção para expandir as respostas associadas.
-    - Caso a seção possua subseções, elas também serão exibidas e podem ser expandidas individualmente.
 
+   - Acesse a página da FAQ através do navegador da web.
+   - Você verá uma lista de seções de perguntas frequentes.
+   - Clique em uma seção para expandir as respostas associadas.
+   - Caso a seção possua subseções, elas também serão exibidas e podem ser expandidas individualmente.
 2. Modo de Administração
+
    - Para acessar o modo de administração, clique no botão "Editar" localizado no canto inferior direito do banner da página.
    - Uma vez no modo de administração, as seções da FAQ terão três botões no canto superior direito: "Apagar Seção" "Editar Conteúdo" e "Adicionar Subseção".
    - O botão "Editar Conteúdo" permitirá que você edite o texto da pergunta e resposta da seção, transformando-os em campos de entrada (inputs). Haverá dois botões adicionais também localizado no canto inferior direito do banner da página: "Confirmar Edição" e "Cancelar Edição".
